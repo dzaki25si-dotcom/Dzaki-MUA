@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
-    <link href="{{ asset('adminassets/img/favicon.ico') }}" rel="icon">
+    <img src="{{ asset('adminassets/img/logoprojectbg1.png') }}" alt="Logo MUA Ulva" width="60">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="{{ route('admin.dashboard') }}" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><img src="adminassets/img/logoprojectbg1.png" alt="" width="60px">DASHMIN</h3>
+                    <h3 class="text-primary"><img src="adminassets/img/logoprojectbg1.png" alt="" width="60px">MUA Ulva</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -67,7 +67,7 @@
                     </div>
                     <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="{{ route('pelanggan.index') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Pelanggan</a>
                     <a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
