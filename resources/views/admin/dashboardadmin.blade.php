@@ -1,392 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.layout')
 
-<head>
-    <meta charset="utf-8">
-    <title>DASHMIN - Admin Dashboard</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+@section('title', 'Dashboard Admin')
 
-    <!-- Favicon -->
-    <img src="{{ asset('adminassets/img/logoprojectbg1.png') }}" alt="Logo MUA Ulva" width="60">
+@section('content')
+<div class="container-fluid pt-4 px-4">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <h4 class="mb-4">Dashboard Admin</h4>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    {{-- Statistik --}}
+    <div class="row g-4 mb-4">
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{ asset('adminassets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('adminassets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-
-    <!-- Bootstrap & Template CSS -->
-    <link href="{{ asset('adminassets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('adminassets/css/style.css') }}" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container-fluid position-relative bg-white d-flex p-0">
-
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center p-4">
+                <i class="fa fa-users fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Pelanggan</p>
+                    <h4 class="mb-0">{{ $totalPelanggan }}</h4>
+                </div>
             </div>
         </div>
-        <!-- Spinner End -->
 
-
-        <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-light navbar-light">
-                <a href="{{ route('admin.dashboard') }}" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><img src="adminassets/img/logoprojectbg1.png" alt="" width="60px">MUA Ulva</h3>
-                </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                        <img class="rounded-circle" src="{{ asset('adminassets/img/logoproject.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0">John Doe</h6>
-                        <span>Admin</span>
-                    </div>
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center p-4">
+                <i class="fa fa-magic fa-3x text-success"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Paket Makeup Aktif</p>
+                    <h4 class="mb-0">{{ $totalPaket }}</h4>
                 </div>
-                <div class="navbar-nav w-100">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Buttons</a>
-                            <a href="#" class="dropdown-item">Typography</a>
-                            <a href="#" class="dropdown-item">Other Elements</a>
-                        </div>
-                    </div>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="{{ route('pelanggan.index') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Pelanggan</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Sign In</a>
-                            <a href="#" class="dropdown-item">Sign Up</a>
-                            <a href="#" class="dropdown-item">404 Error</a>
-                            <a href="#" class="dropdown-item">Blank Page</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            </div>
         </div>
-        <!-- Sidebar End -->
 
-
-        <!-- Content Start -->
-        <div class="content">
-
-            <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="{{ route('admin.dashboard') }}" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-                </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
-                </form>
-                <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            @for ($i = 0; $i < 3; $i++)
-                                <a href="#" class="dropdown-item">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle" src="{{ asset('adminassets/img/logoproject.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                        <div class="ms-2">
-                                            <h6 class="fw-normal mb-0">John sent you a message</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <hr class="dropdown-divider">
-                            @endfor
-                            <a href="#" class="dropdown-item text-center">See all messages</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notification</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{ asset('adminassets/img/logoproject.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <!-- Navbar End -->
-
-
-            <!-- Sale & Revenue Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center p-4">
+                <i class="fa fa-calendar fa-3x text-warning"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Reservasi</p>
+                    <h4 class="mb-0">{{ $totalReservasi }}</h4>
                 </div>
             </div>
-            <!-- Sale & Revenue End -->
-
-
-            <!-- Sales Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide Sales</h6>
-                                <a href="#">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Sales & Revenue</h6>
-                                <a href="#">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sales Chart End -->
-
-
-            <!-- Recent Sales Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Recent Sales</h6>
-                        <a href="#">Show All</a>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Invoice</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for ($i = 0; $i < 5; $i++)
-                                    <tr>
-                                        <td><input class="form-check-input" type="checkbox"></td>
-                                        <td>01 Jan 2045</td>
-                                        <td>INV-0123</td>
-                                        <td>John Doe</td>
-                                        <td>$123</td>
-                                        <td>Paid</td>
-                                        <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Recent Sales End -->
-
-
-            <!-- Widgets Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-
-                    <!-- Messages -->
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Messages</h6>
-                                <a href="#">Show All</a>
-                            </div>
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="d-flex align-items-center {{ $i < 3 ? 'border-bottom py-3' : 'pt-3' }}">
-                                    <img class="rounded-circle flex-shrink-0" src="{{ asset('adminassets/img/logoproject.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">John Doe</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                        <span>Short message goes here...</span>
-                                    </div>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Calendar -->
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Calendar</h6>
-                                <a href="#">Show All</a>
-                            </div>
-                            <div id="calender"></div>
-                        </div>
-                    </div>
-
-                    <!-- To Do List -->
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">To Do List</h6>
-                                <a href="#">Show All</a>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <input class="form-control bg-transparent" type="text" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2">Add</button>
-                            </div>
-                            @for ($i = 0; $i < 5; $i++)
-                                <div class="d-flex align-items-center {{ $i < 4 ? 'border-bottom py-2' : 'pt-2' }}">
-                                    <input class="form-check-input m-0" type="checkbox" {{ $i == 2 ? 'checked' : '' }}>
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>
-                                                @if ($i == 2)
-                                                    <del>Short task goes here...</del>
-                                                @else
-                                                    Short task goes here...
-                                                @endif
-                                            </span>
-                                            <button class="btn btn-sm {{ $i == 2 ? 'text-primary' : '' }}"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Widgets End -->
-
-
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer End -->
-
         </div>
-        <!-- Content End -->
 
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('adminassets/lib/chart/chart.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/tempusdominus/js/moment.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-    <script src="{{ asset('adminassets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    {{-- Tabel Reservasi Terbaru --}}
+    <div class="bg-light rounded p-4">
 
-    <!-- Template Javascript -->
-    <script src="{{ asset('adminassets/js/main.js') }}"></script>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">Reservasi Terbaru</h5>
 
-    <!-- Jaring pengaman: spinner tetap hilang walau ada library yang gagal dimuat -->
-    <script>
-        window.addEventListener('load', function () {
-            var s = document.getElementById('spinner');
-            if (s) s.classList.remove('show');
-        });
-    </script>
-</body>
+            <a href="{{ route('reservasi.index') }}"
+               class="btn btn-primary btn-sm">
+                Lihat Semua
+            </a>
+        </div>
 
-</html>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead style="background-color: #8B5E3C; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Pelanggan</th>
+                        <th>Paket Makeup</th>
+                        <th>Tanggal</th>
+                        <th>Jam</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse ($reservasiTerbaru as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->pelanggan->nama ?? '-' }}</td>
+                            <td>{{ $item->paket->nama_paket ?? '-' }}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($item->tanggal_reservasi)->format('d-m-Y') }}
+                            </td>
+                            <td>{{ substr($item->jam_reservasi, 0, 5) }}</td>
+                            <td>
+                                @if ($item->status == 'menunggu')
+                                    <span class="badge bg-warning text-dark">
+                                        Menunggu
+                                    </span>
+                                @elseif ($item->status == 'dikonfirmasi')
+                                    <span class="badge bg-primary">
+                                        Dikonfirmasi
+                                    </span>
+                                @elseif ($item->status == 'selesai')
+                                    <span class="badge bg-success">
+                                        Selesai
+                                    </span>
+                                @else
+                                    <span class="badge bg-danger">
+                                        Dibatalkan
+                                    </span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                Belum ada reservasi.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+@endsection

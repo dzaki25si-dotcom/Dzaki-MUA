@@ -22,6 +22,19 @@
     <link href="{{ asset('adminassets/css/style.css') }}" rel="stylesheet">
 
     @stack('styles')
+    ```html
+<style>
+    .content-wrapper {
+        padding-bottom: 10px !important;
+    }
+
+    .footer {
+        margin-top: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+</style>
+```
 </head>
 
 <body>
@@ -35,18 +48,20 @@
         </div>
     </div>
 
-    {{-- Sidebar Dashmin --}}
+    {{-- Sidebar --}}
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
 
+            {{-- Logo --}}
             <a href="{{ route('admin.dashboard') }}" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary">
+                <h3 class="text-primary d-flex align-items-center gap-2">
                     <img src="{{ asset('adminassets/img/logoprojectbg1.png') }}"
                          alt="Logo MUA Ulva" width="60">
                     MUA Ulva
                 </h3>
             </a>
 
+            {{-- Profil Admin --}}
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
                     <img class="rounded-circle"
@@ -63,6 +78,7 @@
                 </div>
             </div>
 
+            {{-- Menu Sidebar --}}
             <div class="navbar-nav w-100">
 
                 <a href="{{ route('admin.dashboard') }}"
@@ -71,58 +87,33 @@
                     Dashboard
                 </a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-laptop me-2"></i>
-                        Elements
-                    </a>
-
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="#" class="dropdown-item">Buttons</a>
-                        <a href="#" class="dropdown-item">Typography</a>
-                        <a href="#" class="dropdown-item">Other Elements</a>
-                    </div>
-                </div>
-
-                <a href="#" class="nav-item nav-link">
-                    <i class="fa fa-th me-2"></i>Widgets
-                </a>
-
-                <a href="#" class="nav-item nav-link">
-                    <i class="fa fa-keyboard me-2"></i>Forms
-                </a>
-
                 <a href="{{ route('pelanggan.index') }}"
                    class="nav-item nav-link {{ request()->routeIs('pelanggan.*') ? 'active' : '' }}">
                     <i class="fa fa-users me-2"></i>
                     Pelanggan
                 </a>
 
-                <a href="#" class="nav-item nav-link">
-                    <i class="fa fa-chart-bar me-2"></i>Charts
+                <a href="{{ route('paket.index') }}"
+                   class="nav-item nav-link {{ request()->routeIs('paket.*') ? 'active' : '' }}">
+                    <i class="fa fa-palette me-2"></i>
+                    Paket Makeup
                 </a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="far fa-file-alt me-2"></i>Pages
-                    </a>
-
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="#" class="dropdown-item">Sign In</a>
-                        <a href="#" class="dropdown-item">Sign Up</a>
-                        <a href="#" class="dropdown-item">404 Error</a>
-                        <a href="#" class="dropdown-item">Blank Page</a>
-                    </div>
-                </div>
+                <a href="{{ route('reservasi.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('reservasi.*') ? 'active' : '' }}">
+                    <i class="fa fa-calendar-alt me-2"></i>
+                    Reservasi
+                </a>
 
             </div>
+
         </nav>
     </div>
 
-    {{-- Konten utama --}}
+    {{-- Konten Utama --}}
     <div class="content">
 
-        {{-- Navbar Dashmin --}}
+        {{-- Navbar Atas --}}
         <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
 
             <a href="{{ route('admin.dashboard') }}"
@@ -136,94 +127,32 @@
                 <i class="fa fa-bars"></i>
             </a>
 
-            <form class="d-none d-md-flex ms-4">
+            <form class="d-none d-md-flex ms-4" action="#" method="GET">
                 <input class="form-control border-0" type="search" placeholder="Search">
             </form>
 
             <div class="navbar-nav align-items-center ms-auto">
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-envelope me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Message</span>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        @for ($i = 0; $i < 3; $i++)
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle"
-                                         src="{{ asset('adminassets/img/logoproject.jpg') }}"
-                                         alt="Admin"
-                                         style="width: 40px; height: 40px;">
-
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">John sent you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <hr class="dropdown-divider">
-                        @endfor
-
-                        <a href="#" class="dropdown-item text-center">See all messages</a>
-                    </div>
-                </div>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-bell me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Notification</span>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Profile updated</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-
-                        <hr class="dropdown-divider">
-
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">New user added</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-
-                        <hr class="dropdown-divider">
-
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Password changed</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-
-                        <hr class="dropdown-divider">
-
-                        <a href="#" class="dropdown-item text-center">See all notifications</a>
-                    </div>
-                </div>
-
+                {{-- Profil Admin --}}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <img class="rounded-circle me-lg-2"
                              src="{{ asset('adminassets/img/logoproject.jpg') }}"
                              alt="Admin"
                              style="width: 40px; height: 40px;">
-
                         <span class="d-none d-lg-inline-flex">John Doe</span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <a href="#" class="dropdown-item">Profil</a>
+                        <a href="#" class="dropdown-item">Pengaturan</a>
                     </div>
                 </div>
 
             </div>
         </nav>
 
-        {{-- Isi setiap halaman --}}
+        {{-- Isi Halaman --}}
         @yield('content')
 
         {{-- Footer --}}
@@ -243,7 +172,7 @@
 
     </div>
 
-    {{-- Tombol kembali ke atas --}}
+    {{-- Tombol Kembali ke Atas --}}
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
         <i class="bi bi-arrow-up"></i>
     </a>
@@ -267,6 +196,7 @@
 <script>
     window.addEventListener('load', function () {
         var spinner = document.getElementById('spinner');
+
         if (spinner) {
             spinner.classList.remove('show');
         }
