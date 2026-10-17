@@ -20,21 +20,9 @@
 
     <link href="{{ asset('adminassets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('adminassets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('adminassets/css/custom.css') }}" rel="stylesheet">
 
     @stack('styles')
-    ```html
-<style>
-    .content-wrapper {
-        padding-bottom: 10px !important;
-    }
-
-    .footer {
-        margin-top: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-</style>
-```
 </head>
 
 <body>

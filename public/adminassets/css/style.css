@@ -373,265 +373,45 @@ a:hover {
 }
 
 
-/********** CRUD PELANGGAN - MUA ULVA **********/
-
-/* Latar halaman */
-.pelanggan-page {
-    padding: 30px;
-    color: var(--dark);
+/* CSS admin MUA Ulva */
+.content-wrapper { padding-bottom: 10px !important; }
+.footer { margin-top: 10px !important; padding-top: 10px !important; padding-bottom: 10px !important; }
+.pelanggan-page { padding: 25px; color: #3E2C23; }
+.page-header { margin-bottom: 25px; }
+.page-title { font-size: 28px; font-weight: 700; color: #3E2C23; margin-bottom: 8px; }
+.page-description { color: #806B5D; margin-bottom: 25px; }
+.pelanggan-card { background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(62, 44, 35, 0.08); }
+.pelanggan-header { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 22px; }
+.pelanggan-header h2 { font-size: 22px; font-weight: 700; margin: 0; }
+.btn-pelanggan { display: inline-block; background: #A47551; color: #fff; padding: 10px 16px; text-decoration: none; border: none; border-radius: 7px; }
+.btn-pelanggan:hover { background: #8A5F3F; color: #fff; }
+.pelanggan-table { width: 100%; border-collapse: collapse; }
+.pelanggan-table th { background: #F5EBE0; color: #3E2C23; padding: 14px; text-align: left; }
+.pelanggan-table td { padding: 14px; border-bottom: 1px solid #EEE5DD; vertical-align: middle; }
+.action-buttons { display: flex; align-items: center; gap: 8px; }
+.btn-edit { display: inline-block; background: #E9D5C3; color: #5B3925; padding: 7px 12px; border-radius: 5px; text-decoration: none; font-size: 13px; }
+.btn-edit:hover { background: #D9BFA8; color: #3E2C23; }
+.btn-delete { background: #B94A48; color: #fff; padding: 7px 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; }
+.btn-delete:hover { background: #963936; }
+.empty-data { text-align: center; padding: 25px !important; color: #806B5D; }
+.form-card { background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(62, 44, 35, 0.08); }
+.form-card h5 { font-weight: 700; color: #3E2C23; margin-bottom: 25px; }
+.form-label { font-weight: 600; color: #3E2C23; }
+.form-control { border-radius: 7px; padding: 11px 13px; border-color: #D8C6B6; }
+.form-control:focus { border-color: #A47551; box-shadow: 0 0 0 3px rgba(164, 117, 81, 0.15); }
+.btn-save { background: #A47551; color: #fff; border: none; border-radius: 7px; padding: 10px 20px; }
+.btn-save:hover { background: #8A5F3F; color: #fff; }
+.btn-cancel { background: #F5EBE0; color: #3E2C23; border-radius: 7px; padding: 10px 20px; text-decoration: none; }
+.btn-cancel:hover { background: #E9D8C7; color: #3E2C23; }
+.alert-pelanggan { padding: 13px 16px; border-radius: 7px; margin-bottom: 20px; }
+.alert-success-custom { background: #E4F3E7; color: #28643A; border: 1px solid #B9DFC1; }
+.alert-error-custom { background: #FBE8E7; color: #963936; border: 1px solid #F0C3C0; }
+@media (max-width: 600px) {
+  .pelanggan-page { padding: 15px; }
+  .pelanggan-card { padding: 15px; }
+  .pelanggan-table th, .pelanggan-table td { padding: 10px; }
 }
-
-.pelanggan-page .page-title {
-    color: var(--dark);
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.pelanggan-page .page-description {
-    color: #8A7567;
-    margin-bottom: 25px;
-}
-
-/* Kartu konten */
-.pelanggan-page .pelanggan-card {
-    background: #FFFFFF;
-    border: 1px solid rgba(164, 117, 81, 0.18);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 4px 18px rgba(62, 44, 35, 0.05);
-}
-
-/* Bagian judul dan tombol */
-.pelanggan-page .pelanggan-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 22px;
-}
-
-.pelanggan-page .pelanggan-header h2 {
-    color: var(--dark);
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0;
-}
-
-/* Tombol */
-.pelanggan-page .btn-pelanggan {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: 1px solid var(--primary);
-    background: var(--primary);
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.pelanggan-page .btn-pelanggan:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
-    color: #FFFFFF;
-}
-
-.pelanggan-page .btn-pelanggan-outline {
-    background: #FFFFFF;
-    color: var(--primary);
-}
-
-.pelanggan-page .btn-pelanggan-outline:hover {
-    background: var(--light);
-    color: var(--primary-dark);
-}
-
-.pelanggan-page .btn-pelanggan-danger {
-    background: #B94A48;
-    border-color: #B94A48;
-}
-
-.pelanggan-page .btn-pelanggan-danger:hover {
-    background: #963B39;
-    border-color: #963B39;
-}
-
-/* Tabel pelanggan */
-.pelanggan-page .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.pelanggan-page .pelanggan-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 0;
-    background: #FFFFFF;
-}
-
-.pelanggan-page .pelanggan-table thead th {
-    padding: 15px 14px;
-    background: var(--light);
-    color: var(--dark);
-    font-size: 13px;
-    font-weight: 700;
-    text-align: left;
-    white-space: nowrap;
-    border-bottom: 2px solid rgba(164, 117, 81, 0.25);
-}
-
-.pelanggan-page .pelanggan-table tbody td {
-    padding: 15px 14px;
-    color: var(--dark);
-    font-size: 14px;
-    border-bottom: 1px solid rgba(164, 117, 81, 0.15);
-    vertical-align: middle;
-}
-
-.pelanggan-page .pelanggan-table tbody tr:hover {
-    background: rgba(164, 117, 81, 0.06);
-}
-
-.pelanggan-page .pelanggan-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Tombol aksi dalam tabel */
-.pelanggan-page .action-buttons {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.pelanggan-page .action-buttons .btn-pelanggan {
-    padding: 7px 11px;
-    font-size: 12px;
-}
-
-/* Form tambah dan edit */
-.pelanggan-page .pelanggan-form {
-    max-width: 750px;
-}
-
-.pelanggan-page .form-group {
-    margin-bottom: 20px;
-}
-
-.pelanggan-page .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--dark);
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.pelanggan-page .form-group input,
-.pelanggan-page .form-group textarea,
-.pelanggan-page .form-group select {
-    display: block;
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #DDCBBB;
-    border-radius: 8px;
-    background: #FFFAF5;
-    color: var(--dark);
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-
-.pelanggan-page .form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.pelanggan-page .form-group input:focus,
-.pelanggan-page .form-group textarea:focus,
-.pelanggan-page .form-group select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(164, 117, 81, 0.15);
-    background: #FFFFFF;
-}
-
-.pelanggan-page .form-group input::placeholder,
-.pelanggan-page .form-group textarea::placeholder {
-    color: #AA9687;
-}
-
-.pelanggan-page .form-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-/* Pesan berhasil dan error */
-.pelanggan-page .alert-pelanggan {
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.pelanggan-page .alert-pelanggan-success {
-    background: #E8F4E8;
-    border: 1px solid #B9DDB9;
-    color: #28652D;
-}
-
-.pelanggan-page .alert-pelanggan-error {
-    background: #FBEAEA;
-    border: 1px solid #E9BDBD;
-    color: #963B39;
-}
-
-.pelanggan-page .alert-pelanggan ul {
-    margin: 8px 0 0;
-    padding-left: 20px;
-}
-
-/* Data kosong */
-.pelanggan-page .empty-data {
-    padding: 35px 15px;
-    color: #8A7567;
-    text-align: center;
-}
-
-/* Tampilan HP */
-@media (max-width: 767.98px) {
-    .pelanggan-page {
-        padding: 18px 12px;
-    }
-
-    .pelanggan-page .pelanggan-card {
-        padding: 16px;
-        border-radius: 10px;
-    }
-
-    .pelanggan-page .page-title {
-        font-size: 23px;
-    }
-
-    .pelanggan-page .pelanggan-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .pelanggan-page .pelanggan-table thead th,
-    .pelanggan-page .pelanggan-table tbody td {
-        padding: 11px 10px;
-    }
-
-    .pelanggan-page .form-actions .btn-pelanggan {
-        flex: 1;
-    }
+@media (max-width: 576px) {
+  .pelanggan-page { padding: 15px; }
+  .form-card { padding: 20px; }
 }

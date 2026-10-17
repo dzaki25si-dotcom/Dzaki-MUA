@@ -21,7 +21,7 @@ class adminController extends Controller
             'paket'
         ])->latest()->take(5)->get();
 
-        return view('admin.dashboardadmin', compact(
+        return view('admin.dashboard.index', compact(
             'totalPelanggan',
             'totalPaket',
             'totalReservasi',

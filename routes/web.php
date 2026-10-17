@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\UserController;
+
 
 
 Route::get('/', function () {
@@ -22,3 +24,5 @@ Route::resource('pelanggan', PelangganController::class);
 Route::resource('paket', PaketController::class);
 
 Route::resource('reservasi', ReservasiController::class);
+
+Route::resource('user', UserController::class);
