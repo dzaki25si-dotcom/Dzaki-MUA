@@ -1,4 +1,3 @@
-
 @extends('layouts.admin.app')
 
 @section('title', 'Data User - MUA Ulva')
@@ -48,7 +47,7 @@
                         <th>No.</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>Dibuat</th>
+                        <th>Password</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -59,9 +58,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>
-                                {{ $user->created_at?->format('d-m-Y') ?? '-' }}
-                            </td>
+                            <td>{{ $user->password }}</td>
                             <td>
                                 <div class="d-flex gap-2">
                                     <a href="{{ route('user.edit', $user->id) }}"

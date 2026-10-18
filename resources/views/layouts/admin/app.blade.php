@@ -21,7 +21,6 @@
         <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-<!-- Spinner End -->
 
         {{-- Sidebar --}}
         @include('layouts.admin.sidebar')
