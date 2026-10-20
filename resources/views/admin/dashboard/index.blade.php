@@ -40,6 +40,16 @@
             </div>
         </div>
 
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center p-4">
+                <i class="fa fa-users fa-3x text-danger"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total User</p>
+                    <h4 class="mb-0">{{ $dataUser }}</h4>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     {{-- Tabel Reservasi Terbaru --}}

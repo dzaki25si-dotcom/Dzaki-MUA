@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use App\Models\Paket;
 use App\Models\Reservasi;
+use App\Models\User;
 
 class adminController extends Controller
 {
@@ -16,6 +17,8 @@ class adminController extends Controller
 
         $totalReservasi = Reservasi::count();
 
+        $dataUser = User::count();
+
         $reservasiTerbaru = Reservasi::with([
             'pelanggan',
             'paket'
@@ -25,7 +28,8 @@ class adminController extends Controller
             'totalPelanggan',
             'totalPaket',
             'totalReservasi',
-            'reservasiTerbaru'
+            'reservasiTerbaru',
+            'dataUser'
         ));
     }
 }
