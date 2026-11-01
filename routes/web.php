@@ -8,11 +8,11 @@ use App\Http\Controllers\PaketController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DetailLayananController;
 
 // Halaman Guest
-Route::get('/', function () {
-    return view('guest.dashboard');
-})->name('guest.home');
+Route::get('/', [guestController::class, 'index'])
+    ->name('guest.home');
 
 Route::get('/contact', function () {
     return view('guest.contact');
@@ -38,3 +38,5 @@ Route::get('/auth', [AuthController::class, 'index'])
 
 Route::post('/auth', [AuthController::class, 'login'])
     ->name('auth.login');
+
+Route::resource('detail-layanan', DetailLayananController::class);

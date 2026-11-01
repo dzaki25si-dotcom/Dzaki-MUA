@@ -384,7 +384,7 @@ a:hover {
 .pelanggan-header { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 22px; }
 .pelanggan-header h2 { font-size: 22px; font-weight: 700; margin: 0; }
 .btn-pelanggan { display: inline-block; background: #A47551; color: #fff; padding: 10px 16px; text-decoration: none; border: none; border-radius: 7px; }
-.btn-pelanggan:hover { background: #8A5F3F; color: #fff; }
+.btn-pelanggan:hover { background: #8a3f3f; color: #fff; }
 .pelanggan-table { width: 100%; border-collapse: collapse; }
 .pelanggan-table th { background: #F5EBE0; color: #3E2C23; padding: 14px; text-align: left; }
 .pelanggan-table td { padding: 14px; border-bottom: 1px solid #EEE5DD; vertical-align: middle; }

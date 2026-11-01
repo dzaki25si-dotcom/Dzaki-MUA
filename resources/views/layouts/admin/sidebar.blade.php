@@ -52,6 +52,13 @@
                 Paket Makeup
             </a>
 
+            {{-- Detail Layanan --}}
+            <a href="{{ route('detail-layanan.index') }}"
+            class="nav-item nav-link {{ request()->routeIs('detail-layanan.*') ? 'active' : '' }}">
+                <i class="fa fa-list-alt me-2"></i>
+                Detail Layanan
+            </a>
+
             {{-- Reservasi --}}
             <a href="{{ route('reservasi.index') }}"
                class="nav-item nav-link {{ request()->routeIs('reservasi.*') ? 'active' : '' }}">

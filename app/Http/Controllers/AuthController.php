@@ -13,13 +13,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if (
-            $request->username == 'guest' &&
-            $request->password == '123'
-        ) {
-            return redirect()->route('guest.home');
+        $username = $request->username;
+        $password = $request->password;
+
+        if ($request->username == $request->password) {
+            return redirect()->route('admin.dashboard');
         }
 
-        return back()->with('error', 'Username atau Password salah!');
+        // Jika username atau password salah
+        return redirect()->back()->with('error', 'Username atau Password salah!');
     }
 }

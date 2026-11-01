@@ -8,9 +8,9 @@
         <div class="col-md-5">
             <div class="card shadow p-4">
 
-                <h2 class="text-center mb-4">Login Guest</h2>
+                <h2 class="text-center mb-4">Login</h2>
 
-                @if(session('error'))
+                @if (session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
                     </div>
@@ -29,11 +29,10 @@
                         <input type="password" name="password" class="form-control" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="submit" class="btn btn-primary">
                         Login
                     </button>
                 </form>
-
             </div>
         </div>
     </div>
