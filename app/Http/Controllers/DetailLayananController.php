@@ -27,14 +27,12 @@ class DetailLayananController extends Controller
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|string|max:255',
             'is_aktif' => 'required|boolean',
         ]);
 
         DB::table('detail_layanan')->insert([
             'nama_kategori' => $request->nama_kategori,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar,
             'is_aktif' => $request->is_aktif,
             'created_at' => now(),
             'updated_at' => now(),
@@ -60,14 +58,12 @@ class DetailLayananController extends Controller
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|string|max:255',
             'is_aktif' => 'required|boolean',
         ]);
 
         DB::table('detail_layanan')->where('id', $id)->update([
             'nama_kategori' => $request->nama_kategori,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar,
             'is_aktif' => $request->is_aktif,
             'updated_at' => now(),
         ]);

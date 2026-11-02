@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid pt-4 px-4">
     <h1 class="page-title">Kategori Layanan</h1>
     <p class="page-description">Kelola kategori layanan MUA Ulva.</p>
 
@@ -30,7 +30,6 @@
                             <th>No</th>
                             <th>Nama Kategori</th>
                             <th>Deskripsi</th>
-                            <th>Gambar</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -44,10 +43,6 @@
                                 <td>{{ $item->nama_kategori }}</td>
 
                                 <td>{{ $item->deskripsi }}</td>
-
-                                <td>
-                                    {{ $item->gambar ?? '-' }}
-                                </td>
 
                                 <td>
                                     @if($item->is_aktif)

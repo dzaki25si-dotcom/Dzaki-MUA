@@ -41,13 +41,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Nama File Gambar</label>
-                    <input type="text" name="gambar"
-                        class="form-control"
-                        value="{{ old('gambar', $detailLayanan->gambar) }}">
-                </div>
-
-                <div class="mb-3">
                     <label class="form-label">Status</label>
                     <select name="is_aktif" class="form-control" required>
                         <option value="1"

@@ -27,18 +27,23 @@ class PaketController extends Controller
     // Menyimpan paket
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'detail_layanan_id' => 'required|exists:detail_layanan,id',
             'nama_paket' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric|min:0',
             'durasi_jam' => 'required|numeric|min:0.1',
-            'kategori' => 'required|string',
             'dp_persen' => 'required|integer|min:0|max:100',
             'is_aktif' => 'required|boolean',
         ]);
 
-        Paket::create($request->all());
+        $kategori = DetailLayanan::findOrFail(
+            $validated['detail_layanan_id']
+        );
+
+        $validated['kategori'] = $kategori->nama_kategori;
+
+        Paket::create($validated);
 
         return redirect()->route('paket.index')
             ->with('success', 'Paket berhasil ditambahkan.');
@@ -55,18 +60,23 @@ class PaketController extends Controller
     // Mengubah paket
     public function update(Request $request, Paket $paket)
     {
-        $request->validate([
+        $validated = $request->validate([
             'detail_layanan_id' => 'required|exists:detail_layanan,id',
             'nama_paket' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric|min:0',
             'durasi_jam' => 'required|numeric|min:0.1',
-            'kategori' => 'required|string',
             'dp_persen' => 'required|integer|min:0|max:100',
             'is_aktif' => 'required|boolean',
         ]);
 
-        $paket->update($request->all());
+        $kategori = DetailLayanan::findOrFail(
+            $validated['detail_layanan_id']
+        );
+
+        $validated['kategori'] = $kategori->nama_kategori;
+
+        $paket->update($validated);
 
         return redirect()->route('paket.index')
             ->with('success', 'Paket berhasil diperbarui.');
