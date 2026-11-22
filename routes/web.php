@@ -18,19 +18,8 @@ Route::get('/contact', function () {
     return view('guest.contact');
 })->name('guest.contact');
 
-// Dashboard Admin
-Route::get('/admin', [adminController::class, 'index'])
-    ->name('admin.dashboard');
-
-// Halaman Guest alternatif
 Route::get('/guest', [guestController::class, 'index'])
     ->name('guest.dashboard');
-
-// CRUD
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('paket', PaketController::class);
-Route::resource('reservasi', ReservasiController::class);
-Route::resource('user', UserController::class);
 
 // Login
 Route::get('/auth', [AuthController::class, 'index'])
@@ -39,4 +28,45 @@ Route::get('/auth', [AuthController::class, 'index'])
 Route::post('/auth', [AuthController::class, 'login'])
     ->name('auth.login');
 
-Route::resource('detail-layanan', DetailLayananController::class);
+    Route::get('/register', function () {
+    return view('guest.register');
+})->name('register');
+
+Route::post('/register', [AuthController::class, 'register'])
+    ->name('register.store');
+
+    // Forgot Password
+Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])
+    ->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->name('password.email');
+
+    // Reset Password
+Route::get('/reset-password/{token}', [AuthController::class, 'resetPassword'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'updatePassword'])
+    ->name('password.update');
+
+
+// Route khusus Admin
+Route::middleware(['auth', 'checkrole:Admin'])->group(function () {
+
+    Route::get('/admin', [adminController::class, 'index'])
+        ->name('admin.dashboard');
+
+    Route::resource('pelanggan', PelangganController::class);
+    Route::resource('paket', PaketController::class);
+    Route::resource('reservasi', ReservasiController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('detail-layanan', DetailLayananController::class);
+
+});
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('auth.logout');
+
+

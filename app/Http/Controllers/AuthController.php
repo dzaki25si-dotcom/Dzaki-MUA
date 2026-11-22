@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function index()
@@ -13,14 +15,74 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $username = $request->username;
-        $password = $request->password;
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if ($request->username == $request->password) {
-            return redirect()->route('admin.dashboard');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->role == 'Admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
+            return redirect()->route('guest.home');
         }
 
-        // Jika username atau password salah
-        return redirect()->back()->with('error', 'Username atau Password salah!');
+        return back()
+            ->with('error', 'Email atau Password salah!')
+            ->onlyInput('email');
+    }
+
+    public function forgotPassword()
+    {
+        return view('guest.forgot-password');
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('auth.index')
+            ->with('success', 'Password berhasil diubah. Silakan login.');
+    }
+
+        public function logout()
+        {
+            Auth::logout();
+
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
+
+            return redirect('/');
+        }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'Pelanggan',
+        ]);
+
+        return redirect()->route('auth.index')
+            ->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }
