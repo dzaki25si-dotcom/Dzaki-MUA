@@ -22,6 +22,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            session(['last_login' => now()->format('Y-m-d H:i:s')]);
 
             if (Auth::user()->role == 'Admin') {
                 return redirect()->route('admin.dashboard');
@@ -40,22 +41,22 @@ class AuthController extends Controller
         return view('guest.forgot-password');
     }
 
-    public function sendResetLink(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:8|confirmed',
-        ]);
+   public function resetPassword(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email|exists:users,email',
+        'password' => 'required|min:8|confirmed',
+    ]);
 
-        $user = User::where('email', $request->email)->first();
+    $user = User::where('email', $request->email)->first();
 
-        $user->update([
-            'password' => Hash::make($request->password),
-        ]);
+    $user->update([
+        'password' => Hash::make($request->password),
+    ]);
 
-        return redirect()->route('auth.index')
-            ->with('success', 'Password berhasil diubah. Silakan login.');
-    }
+    return redirect()->route('auth.index')
+        ->with('success', 'Password berhasil diubah. Silakan login.');
+}
 
         public function logout()
         {

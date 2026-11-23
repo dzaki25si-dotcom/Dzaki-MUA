@@ -34,17 +34,30 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+
                 <a href="#" class="dropdown-item">Profil</a>
+
                 <a href="#" class="dropdown-item">Pengaturan</a>
 
                 <div class="dropdown-divider"></div>
 
+                <!-- Waktu Login -->
+                <div class="dropdown-item d-flex align-items-center">
+                    <i class="fa fa-clock me-2 text-secondary"></i>
+                    {{ session('last_login', '-') }}
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- Logout -->
                 <form action="{{ route('auth.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item">
+                        <i class="fa fa-sign-out-alt me-2"></i>
                         Logout
                     </button>
                 </form>
+
             </div>
         </div>
 
